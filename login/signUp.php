@@ -46,9 +46,12 @@
     exit;
     }
     else{
-    
-        die($connexion->error . " " . $connexion->errno);
-    
+        if($connexion->errno === 1062){
+            die("Mail déjà pris");
+        }
+        else{
+            die($connexion->error . " " . $connexion->errno);
+        }
     }
 
 ?>
