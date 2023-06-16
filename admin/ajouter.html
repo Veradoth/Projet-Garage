@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ajouter un véhicule</title>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <label>Veuillez renseignez les informations suivantes :</label>
+        <form method="POST" action="ajouter.php">
+        <input type="text" name="immatriculation" required><label>Numéro d'immatriculation</label>
+        <input type="text" name="marque" placeholder="Peugeot, Renault" required><label>Marque</label>
+        <input type="text" name="modele" placeholder="208, capture" required><label>Modèle</label>
+        <input type="date" name="mise_circulation" required><label>Date de première mise en circulation du véhicule</label>
+        <input type="number" name="prix" required><label>Prix de la voiture</label>
+        <input type="date" name="rentree" required><label>Date de rentrée au garage</label>
+        <input type="number" name="chevaux" required><label>Nombre de chevaux fiscaux</label>
+        <input type="text" name="description" required><label>Description</label>
+        <button type="submit">Ajouter</button>
+        </form>
+        <form action="louer.html">
+        <button type="submit">Retour</button>
+        </form>
+    </body>
+</html>
