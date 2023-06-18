@@ -1,56 +1,55 @@
 <?php
     if(empty($_POST["nom"])){
-        die("Le nom est requis");
+        die("Le nom est requis"); // Si le champ "nom" est vide, affiche un message d'erreur et arrête l'exécution
     }
 
     if(! filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)){
-        die("Mail valide requis");
+        die("Mail valide requis"); // Si le champ "mail" n'est pas un email valide, affiche un message d'erreur et arrête l'exécution
     }
 
     if(strlen($_POST["mdp"]) < 8){
-        die("Mot de passe doit contenir au moins 8 caractères !");
+        die("Mot de passe doit contenir au moins 8 caractères !"); // Si le champ "mdp" contient moins de 8 caractères, affiche un message d'erreur et arrête l'exécution
     }
 
     if(! preg_match("/[a-z]/i", $_POST["mdp"])){
-        die("Le mot de passe doit contenir au moins 1 lettre");
+        die("Le mot de passe doit contenir au moins 1 lettre"); // Si le champ "mdp" ne contient pas au moins une lettre, affiche un message d'erreur et arrête l'exécution
     }
 
     if(! preg_match("/[0-9]/i", $_POST["mdp"])){
-        die("Le mot de passe doit contenir au moins 1 chiffre !");
+        die("Le mot de passe doit contenir au moins 1 chiffre !"); // Si le champ "mdp" ne contient pas au moins un chiffre, affiche un message d'erreur et arrête l'exécution
     }
 
     if($_POST["mdp"] !== $_POST["mdp_confirm"]){
-        die("Les mots de passe ne sont pas identiques !");
+        die("Les mots de passe ne sont pas identiques !"); // Si les champs "mdp" et "mdp_confirm" ne sont pas identiques, affiche un message d'erreur et arrête l'exécution
     }
 
-    $password_hash = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
+    $password_hash = password_hash($_POST["mdp"], PASSWORD_DEFAULT); // Génère le hash du mot de passe à partir du champ "mdp"
 
-    $connexion = require __DIR__. "/connexion_user.php";
+    $connexion = require __DIR__. "/connexion_user.php"; // Établit la connexion à la base de données
 
-    $sql = "INSERT INTO administrateur (nom, mail, mdp_hash) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO administrateur (nom, mail, mdp_hash) VALUES (?, ?, ?)"; // Requête SQL pour insérer les données dans la table "administrateur"
 
-    $stmt = $connexion->stmt_init();
+    $stmt = $connexion->stmt_init(); // Initialise une nouvelle requête préparée
 
     if( ! $stmt->prepare($sql)){
-        die("SQL error: ". $connexion->error);
+        die("SQL error: ". $connexion->error); // Si la préparation de la requête échoue, affiche un message d'erreur avec l'erreur de la connexion et arrête l'exécution
     }
 
     $stmt->bind_param("sss",
                         $_POST["nom"],
                         $_POST["mail"],
-                        $password_hash);
+                        $password_hash); // Lie les valeurs des paramètres à la requête préparée
 
     if($stmt->execute()){
-
-    header("Location: reussie.php");
-    exit;
+        header("Location: reussie.php"); // Redirige l'utilisateur vers la page "reussie.php" si l'exécution de la requête est réussie
+        exit; // Arrête l'exécution du script
     }
     else{
         if($connexion->errno === 1062){
-            die("Mail déjà pris");
+            die("Mail déjà pris"); // Si l'erreur de la connexion est un doublon de clé (mail déjà pris), affiche un message d'erreur et arrête l'exécution
         }
         else{
-            die($connexion->error . " " . $connexion->errno);
+            die($connexion->error . " " . $connexion->errno); // Sinon, affiche l'erreur de la connexion avec le code d'erreur et arrête l'exécution
         }
     }
 
