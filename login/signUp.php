@@ -25,7 +25,7 @@
 
     $password_hash = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
 
-    $connexion = require __DIR__. "/connexion.php";
+    $connexion = require __DIR__. "/connexion_user.php";
 
     $sql = "INSERT INTO administrateur (nom, mail, mdp_hash) VALUES (?, ?, ?)";
 
