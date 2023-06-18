@@ -1,6 +1,6 @@
 <?php
 
-    $connexion = require __DIR__ . "/connexion.php";
+    $connexion = require __DIR__ . "/connexion_user.php";
 
     $sql = sprintf("SELECT * FROM administrateur WHERE mail = '%s'",
                     $connexion->real_escape_string($_GET["mail"]));

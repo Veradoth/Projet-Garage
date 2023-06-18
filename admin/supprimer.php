@@ -1,3 +1,6 @@
+<?php
+    require_once("../header.php");
+?>
 
 <!doctype html>
 <html lang="fr">
@@ -7,14 +10,15 @@
     </head>
     <body>
         <h1>Modifier un véhicule</h1>
-        <p><a href='louer.html'>Retour</a></p>
+        <p><a href='admin.php'>Retour</a></p>
         <?php
-        include "connexion.php";
+        include "../login/connexion_user.php";
         $num = $_POST['numVoiture'];
 
         $sql = "DELETE FROM voiture WHERE id = $num;";
         $connexion->query($sql); 
-        if(!$connexion->error){echo 'le véhicule a bien été supprimé <br>';}
+        if(!$connexion->errno){
+            echo 'le véhicule a bien été supprimé <br>';}
         mysqli_close($connexion) ;
         ?>
         

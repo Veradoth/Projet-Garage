@@ -7,9 +7,9 @@
     </head>
     <body>
         <h1>Modifier un véhicule</h1>
-        <p><a href='louer.html'>Retour</a></p>
+        <p><a href='admin.php'>Retour</a></p>
         <?php
-        include "connexion.php";
+        include "../login/connexion_user.php";
         $num = $_POST['numVoiture'];
         $immatriculation = $_POST['newImmatriculation'];
         $marque = $_POST['newMarque'];
@@ -22,7 +22,7 @@
 
         $sql = "UPDATE voiture SET immatriculation = '$immatriculation' , marque = '$marque' , modele = '$modele' , mise_circulation = '$mise_circulation' , prix = '$prix' , date_rentree = '$rentree' , chevaux = '$chevaux' , descrip = '$descrip' WHERE id = $num;";
         $connexion->query($sql); 
-        if(!$connexion->error){echo 'la voiture a bien été modifié <br>';}
+        if(!$connexion->connect_errno){echo 'la voiture a bien été modifié <br>';}
         mysqli_close($connexion) ;
         ?>
         

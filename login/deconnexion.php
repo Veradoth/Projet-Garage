@@ -1,9 +1,8 @@
 <?php
+session_start(); // Démarre la session
 
-session_start();
+session_destroy(); // Détruit la session actuelle
 
-session_destroy();
-
-header("Location: ../accueil.php");
-exit;
-?> 
+header("Location: ../accueil.php"); // Redirige vers la page d'accueil
+exit; // Termine l'exécution du script
+?>

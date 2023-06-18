@@ -1,14 +1,14 @@
 <?php
-    session_start();
+    session_start(); // Démarre la session
 
-    if (isset($_SESSION["user_id"])){
-        $connexion = require __DIR__ . "/login/connexion.php";
+    if (isset($_SESSION["user_id"])){ // Vérifie si l'ID de l'utilisateur est défini dans la session
+        $connexion = require __DIR__ . "/login/connexion_user.php"; // Inclut et assigne la connexion à la base de données
 
-        $sql = "SELECT * FROM administrateur WHERE id = {$_SESSION["user_id"]}";
+        $sql = "SELECT * FROM administrateur WHERE id = {$_SESSION["user_id"]}"; // Requête SQL pour récupérer un administrateur par son ID
 
-        $result = $connexion->query($sql);
+        $result = $connexion->query($sql); // Exécute la requête SQL 
 
-        $user = $result->fetch_assoc();
+        $user = $result->fetch_assoc(); // Récupère les données de l'administrateur sous forme de tableau associatif
     }
 ?>
 
@@ -17,46 +17,40 @@
     <head>
         <title>Accueil</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="accueil.css">
+        <link rel="stylesheet" href="accueil.css"> <!-- Inclut une feuille de style externe -->
     </head>
     <body>
 
-    <?php if (isset($user)): ?>
-        <p>Vous êtes connectés <?= htmlspecialchars($user["nom"]) ?>.</p>
+    <?php if (isset($user)): ?> <!-- Vérifie si l'utilisateur est connecté -->
+        <p>Vous êtes connecté <?= htmlspecialchars($user["nom"]) ?>.</p> <!-- Affiche le nom de l'utilisateur connecté -->
     <?php endif; ?>
-        <!--En-tête en haut du site-->
-        <header class="header-up">
+    <?php if(session_status() === PHP_SESSION_NONE): ?>
+        <p>Vous avez été déconnecté.</p>
+    <?php endif; ?>
+
+        <header class="header-up"> <!-- En-tête en haut du site -->
             <h2 class="logo">Projet Garage</h2>
             <nav class="navigation">
                 <a href="accueil.php">Accueil</a>
-                <a href="a_propos.html">A propos</a>
-                <a href="service.html">Service</a>
-                <a href="contact.html">Contact</a>
-                <?php if (isset($user)): ?>
-                    <button onclick="window.location.href='login/deconnexion.php';" class="btnLogin-popup" name="valider">Se deconnecter</button>
+                <a href="#">A propos</a>
+                <a href="#">Service</a>
+                <a href="#">Contact</a>
+                <a href="admin/admin.php">Administration</a>
+                <?php if (isset($user)): ?> <!-- Vérifie si l'utilisateur est connecté -->
+                    <button onclick="window.location.href='login/deconnexion.php';" class="btnLogin-popup" name="valider">Se deconnecter</button> <!-- Affiche le bouton de déconnexion -->
                 <?php else: ?>
-                <button onclick="window.location.href='login/connecter.php';" class="btnLogin-popup" name="valider">Se connecter</button>
+                    <button onclick="window.location.href='login/connecter.php';" class="btnLogin-popup" name="valider">Se connecter</button> <!-- Affiche le bouton de connexion -->
                 <?php endif; ?>
             </nav>
         </header>
-        <!--<header class="header-down">
-            <nav class="navigation-down">
-                <a href="mentions.html">Mentions légales</a>
-                <a href="charte.html">Charte de confidentialité</a>
-            </nav>
-        </header>-->
-        
-        <!--Fenêtre Se connecter / Enregistrer-->
-       
-        </div>
+
         <div class="fenetre-options">
             <div class="fenetre-location">
-                <h3>Location</h3>
-                <a href="admin/louer.html">Louer</a>
+            <button onclick="window.location.href='location/location.php';" class="bouton">Location</button> <!-- Affiche le lien de location -->
             </div>
         </div>
-        <script src="accueil.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <script src="accueil.js"></script> <!-- Inclut un fichier JavaScript externe -->
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script> <!-- Inclut un script externe -->
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> <!-- Inclut un script externe -->
     </body>
 </html>
