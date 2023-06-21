@@ -117,7 +117,6 @@
         <input type="date" name="newRentree" placeholder="Mise en rentrée" required="" class="form form-control"><br>
         <input type="number" name="newChevaux" placeholder="Chevaux" required="" class="form form-control"><br>
         <textarea name="newDescription" placeholder="Description" class="form form-control"></textarea><br>
-        <input type="file" name="fichier"><br><br>
         <input type="submit" name="submit" class="btn btn-primary"><br><br>
         </form>
     <?php

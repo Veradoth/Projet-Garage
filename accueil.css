@@ -10,7 +10,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('location/images/image_fond.webp') no-repeat;
+    background: url('Images/image_fond.webp') no-repeat;
     background-size: cover;
     background-position: center;
 }
