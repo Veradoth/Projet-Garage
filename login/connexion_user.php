@@ -1,7 +1,7 @@
 <?php
-$server = "localhost"; // Adresse du serveur MySQL
-$userdb = "root"; // Nom d'utilisateur de la base de données
-$userpwd = ""; // Mot de passe de la base de données
+$server = "localhost:3307"; // Adresse du serveur MySQL
+$userdb = "aroyer"; // Nom d'utilisateur de la base de données
+$userpwd = "Adrien1402"; // Mot de passe de la base de données
 $base = "garage"; // Nom de la base de données
 
 $connexion=new mysqli($server,$userdb,$userpwd,$base); // Établir une connexion à la base de données MySQL

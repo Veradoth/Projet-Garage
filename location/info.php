@@ -39,7 +39,7 @@
                             <p class="card-text">Marque : <?php echo $_GET['marque'] ?></p>
                             <p class="card-text">Modèle : <?php echo $_GET['modele'] ?></p>
                             <p class="card-text">Mise en circulation : <?php echo $_GET['circulation'] ?></p>
-                            <p class="card-text">Prix : <?php echo $_GET['prix'] ?></p>
+                            <p class="card-text">Prix : <?php echo $_GET['prix'] ?> CFP</p>
                             <p class="card-text">Mise en rentrée : <?php echo $_GET['rentree'] ?></p>
                             <p class="card-text">Chevaux: <?php echo $_GET['chevaux'] ?></p>
                             <p class="card-text">Description : <?php echo $_GET['descrip'] ?></p>

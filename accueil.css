@@ -10,7 +10,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('location/images/image_fond.webp') no-repeat;
+    background: url('Images/image_fond.webp') no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -28,18 +28,7 @@ body{
     z-index: 99;
 }
 
-.header-down {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 100px;
-    background: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 99;
-}
+
 
 /*Le nom du site*/
 .logo{
@@ -122,5 +111,10 @@ body{
   .fenetre-options .fenetre-location .bouton:active {
     background-color: #3e8e41;
   }
+
+   /* Style du message */
+ .message {
+    display: none;
+}
   
 

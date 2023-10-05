@@ -4,6 +4,9 @@
 
 <div class="center">
     <h1>Administration</h1><br><br> <!-- Affichage du titre "Administration" -->
+
+    <!--Champ ajouter un véhicule-->
+
     <?php
         if(isset($_GET['action'])){ // Vérifie si le paramètre 'action' est présent dans l'URL
             if($_GET['action'] == 'add_vehicule'){ // Vérifie si la valeur du paramètre 'action' est égale à 'add_vehicule'
@@ -59,11 +62,12 @@
 
 </div>
 
+<!--Champ supprimer un véhicule-->
+
 <?php
     if(isset($_GET['action'])){ // Vérifie si la variable GET 'action' est définie
         if($_GET['action'] == 'suppr_vehicule'){ // Vérifie si la valeur de 'action' est égale à 'suppr_vehicule'
             require_once("../login/connexion_user.php"); // Inclut et exécute le fichier de connexion à la base de données
-
             ?>
 
     <h3>Supprimer un véhicule</h3> <!-- Titre "Supprimer un véhicule" -->
@@ -87,14 +91,14 @@
 }
 ?>
 
-
+<!--Champ modifier un véhicule-->
 
 <?php
     if(isset($_GET['action'])){
         if($_GET['action'] == 'mod_vehicule'){
             require_once("../login/connexion_user.php");
-
             ?>
+        
         <h1>Modifier la voiture</h1>
         <form action = 'modifier.php' method ='POST'>
         Voiture : <select name='numVoiture'>
@@ -117,7 +121,6 @@
         <input type="date" name="newRentree" placeholder="Mise en rentrée" required="" class="form form-control"><br>
         <input type="number" name="newChevaux" placeholder="Chevaux" required="" class="form form-control"><br>
         <textarea name="newDescription" placeholder="Description" class="form form-control"></textarea><br>
-        <input type="file" name="fichier"><br><br>
         <input type="submit" name="submit" class="btn btn-primary"><br><br>
         </form>
     <?php
