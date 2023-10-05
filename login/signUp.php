@@ -27,7 +27,7 @@
 
     $connexion = require __DIR__. "/connexion_user.php"; // Établit la connexion à la base de données
 
-    $sql = "INSERT INTO administrateur (nom, mail, mdp_hash) VALUES (?, ?, ?)"; // Requête SQL pour insérer les données dans la table "administrateur"
+    $sql = "INSERT INTO utilisateur (nom, mail, mdp_hash) VALUES (?, ?, ?)"; // Requête SQL pour insérer les données dans la table "administrateur"
 
     $stmt = $connexion->stmt_init(); // Initialise une nouvelle requête préparée
 
@@ -44,13 +44,6 @@
         header("Location: reussie.php"); // Redirige l'utilisateur vers la page "reussie.php" si l'exécution de la requête est réussie
         exit; // Arrête l'exécution du script
     }
-    else{
-        if($connexion->errno === 1062){
-            die("Mail déjà pris"); // Si l'erreur de la connexion est un doublon de clé (mail déjà pris), affiche un message d'erreur et arrête l'exécution
-        }
-        else{
-            die($connexion->error . " " . $connexion->errno); // Sinon, affiche l'erreur de la connexion avec le code d'erreur et arrête l'exécution
-        }
-    }
+    
 
 ?>

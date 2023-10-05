@@ -4,7 +4,7 @@
     if($_SERVER["REQUEST_METHOD"] === "POST"){ // Vérifie si la méthode de requête est POST
         $connexion = require __DIR__ . "/connexion_user.php"; // Inclut et assigne la connexion à la base de données
 
-        $sql = sprintf("SELECT * FROM administrateur WHERE mail = '%s'",
+        $sql = sprintf("SELECT * FROM utilisateur WHERE mail = '%s'",
         $connexion->real_escape_string($_POST["mail"])); // Requête SQL pour récupérer un administrateur par son email
 
         $result = $connexion->query($sql); // Exécute la requête SQL
