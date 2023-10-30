@@ -6,10 +6,10 @@
 <html lang="fr">
     <head>
     <meta charset="UTF-8">
-    <title>Modifier un véhicule</title>
+    <title>Supprimer un véhicule</title>
     </head>
     <body>
-        <h1>Modifier un véhicule</h1>
+        <h1>Supprimer un véhicule</h1>
         <p><a href='admin.php'>Retour</a></p>
         <?php
         include "../login/connexion_user.php";
